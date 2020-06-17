@@ -1,0 +1,30 @@
+server:
+  port: 8000
+zuul:
+  ignoredServices: '*'
+  prefix: /api
+  routes:
+    multiplications:
+      path: /multiplications/**
+      serviceId: social-multiplication
+      strip-prefix: false
+    results:
+      path: /results/**
+      serviceId: social-multiplication
+      strip-prefix: false
+    leaders:
+      path: /leaders/**
+      serviceId: gamification
+      strip-prefix: false
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+endpoints:
+  routes:
+    sensitive: false
+ribbon:
+ cloud:
+   loadbalancer:
+     ribbon:
+       enabled: true
